@@ -22,9 +22,9 @@ def draw_lines(img, lines):
         if not(lines is None):
             for line in lines:
                 coords=line[0]
-                if(((coords[4]-coords[2])/(coords[3]-coords[1]))>3.14/4)
+                if(np.abs(np.arctan((coords[3]-coords[1])/(coords[2]-coords[0])))>np.pi/2.1):
                     cv2.line(img, (coords[0],coords[1]),\
-                             (coords[2],coords[3]),[255,255,255],3)
+                             (coords[2],coords[3]),[0,255,0],3)
 def lines_to_rect(lines):
     for line in lines:
         x1=coords[0]
