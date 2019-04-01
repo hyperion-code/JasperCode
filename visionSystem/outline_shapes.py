@@ -7,7 +7,7 @@ import numpy as np
 
 camera,rawCapture=initialize_camera()
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-    threshold_diff=200
+    threshold_diff=50
     threshold_top=100
     image = frame.array
     minX=70
@@ -17,9 +17,11 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     resize=crop_image(image,minX,minY,maxX,maxY,300)
     canny=conv_image(resize,threshold_top,threshold_diff)
     blured=cv2.GaussianBlur(canny,(5,5),0)
-    lines=cv2.HoughLinesP(blured,1,np.pi/180,100,50,50);
+    lines=cv2.HoughLinesP(blured,1,np.pi/180,100,np.array([]),40,3);
     draw_lines(resize, lines);
+    resize=imutils.resize(resize, width=600)
     cv2.imshow("Image", resize)
+    canny=imutils.resize(canny, width=600)
     cv2.imshow("Canny", canny)
     key = cv2.waitKey(1) & 0xFF
     rawCapture.truncate(0)

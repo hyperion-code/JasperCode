@@ -14,23 +14,21 @@ def crop_image(img,minX,minY,maxX,maxY,w):
 
 def conv_image(img,threshold_top,threshold_diff):    
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    #blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     canny=cv2.Canny(gray, threshold1=threshold_top-threshold_diff, threshold2=threshold_top)
     return canny
 
 def draw_lines(img, lines):
+        next_pipe_x=100000
         if not(lines is None):
             for line in lines:
                 coords=line[0]
-                if(np.abs(np.arctan((coords[3]-coords[1])/(coords[2]-coords[0])))>np.pi/2.1):
+                if(np.abs(np.arctan((coords[3]-coords[1])/(coords[2]-coords[0])))>np.pi/2.05):
                     cv2.line(img, (coords[0],coords[1]),\
                              (coords[2],coords[3]),[0,255,0],3)
-def lines_to_rect(lines):
-    for line in lines:
-        x1=coords[0]
-        y1=coords[1]
-        x2=coords[3]
-        y2=coords[4]
-        
-    
-    return rects
+                    if(coords[0]>75):
+                        next_pipe_x=np.minimum(next_pipe_x,coords[0])
+            cv2.line(img, (next_pipe_x,0),(next_pipe_x,450),[0,0,255],1)
+            cv2.line(img, (next_pipe_x+60,0),(next_pipe_x+60,450),[0,0,255],1)
+            cv2.putText(img, "Next Pipe X: "+str(next_pipe_x-75),(next_pipe_x-100,15),\
+                        cv2.FONT_HERSHEY_PLAIN, 0.75, (255, 255, 255), 1,bottomLeftOrigin=False)
+            
