@@ -24,11 +24,14 @@ def draw_lines(img, lines):
                 coords=line[0]
                 if(np.abs(np.arctan((coords[3]-coords[1])/(coords[2]-coords[0])))>np.pi/2.05):
                     cv2.line(img, (coords[0],coords[1]),\
-                             (coords[2],coords[3]),[0,255,0],3)
-                    if(coords[0]>75):
-                        next_pipe_x=np.minimum(next_pipe_x,coords[0])
-            cv2.line(img, (next_pipe_x,0),(next_pipe_x,450),[0,0,255],1)
-            cv2.line(img, (next_pipe_x+60,0),(next_pipe_x+60,450),[0,0,255],1)
-            cv2.putText(img, "Next Pipe X: "+str(next_pipe_x-75),(next_pipe_x-100,15),\
-                        cv2.FONT_HERSHEY_PLAIN, 0.75, (255, 255, 255), 1,bottomLeftOrigin=False)
-            
+                             (coords[2],coords[3]),[0,255,0],1)
+            #        if(coords[0]>75):
+            #            next_pipe_x=np.minimum(next_pipe_x,coords[0])
+           # cv2.line(img, (next_pipe_x,0),(next_pipe_x,450),[0,0,255],1)
+            #cv2.line(img, (next_pipe_x+50,0),(next_pipe_x+50,450),[0,0,255],1)
+           # cv2.putText(img, "Next Pipe X: "+str(next_pipe_x-75),(next_pipe_x-100,15),\
+              #          cv2.FONT_HERSHEY_PLAIN, 0.75, (255, 255, 255), 1,bottomLeftOrigin=False)
+def find_gap(lines):
+    #for line in lines:
+    rect=0;   
+    return rect
