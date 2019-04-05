@@ -1,3 +1,7 @@
+ #3/31/19
+ #Ian Switzer, HyperIon
+ #Just A Stupidly Persistent Robot
+
 # import the necessary packages
 from picamera.array import PiRGBArray
 from picamera import PiCamera
