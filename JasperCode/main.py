@@ -31,12 +31,13 @@ fps = FPS().start()
 last_time=time.time()
 while 1 :
     image = vs.read()
-    original=image
-    x=processX(image)
-    move_finger(int((x[0]-200)/(350-150)*255))
-    y=processY(original,x)
-    draw_overlay(image,x,y);
-    cv2.imshow("Image", image)
+    copy=image.copy()
+    bird=findBird(copy)
+    original=copy
+    x=processX(copy)
+    y=processY(copy,x)
+    draw_overlay(copy,x,y,bird);
+    cv2.imshow("Image", copy)
     
     key = cv2.waitKey(1) & 0xFF
     
