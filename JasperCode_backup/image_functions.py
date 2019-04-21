@@ -60,24 +60,23 @@ def lines_to_y(lines):
 
 def draw_overlay(image,x,y,bird):
     #Draws what Jasper can detect
-    cv2.rectangle(image, (32, 15), (198,250), (255, 0,0),1,8,0)
-    minX=77
-    minY=20
-    maxX=minX+100
-    maxY=minY+3
-    cv2.rectangle(image, (minX, minY), (maxX,maxY), (255, 0,0),1,8,0)
-    cv2.rectangle(image, (x+15, 20), (x+16,250), (255, 0,0),1,8,0)
+    cv2.rectangle(image, (65, 60), (395,550), (255, 0,0),1,8,0)
+    xminX=155
+    xminY=485
+    xmaxX=xminX+155
+    xmaxY=xminY+5
+    cv2.rectangle(image, (xminX, xminY), (xmaxX,xmaxY), (255, 0,0),1,8,0)
     draw_pipes(image, x,y)
     
-    cv2.rectangle(image, (74, 35), (81,225), (255, 0,0),1,8,0)
-    cv2.circle(image,(77,bird),7,(0, 255,255),1,8,0)
+    cv2.rectangle(image, (152, 70), (153,450), (255, 0,0),1,8,0)
+    cv2.circle(image,(154,bird),15,(0, 255,255),1,8,0)
 
 
 def draw_pipes(img, x, y):
     #Draws the pipes
-    if(x!=-1 and y!=-1):
-        cv2.rectangle(img, (x, 10), (x+30,y), (0, 255,00),2,8,0)
-        cv2.rectangle(img, (x, 275), (x+30,y+46), (0, 255,0),2,8,0)
-        #cv2.putText(img, "Next Pipe: (" +str(x)+","+str(y)+")", (x, y+5),
-         #           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+    if(x.size>=2 and y.size>=1):
+        cv2.rectangle(img, (int(x[0]), 100), (int(x[1]),int(y[0])), (0, 255,00),2,8,0)
+        cv2.rectangle(img, (int(x[0]), 450), (int(x[1]),int(y[1])), (0, 255,0),2,8,0)
+        cv2.putText(img, "Next Pipe: (" +str(int(x[1]))+","+str(int(y[1]))+")", (int(x[1]), int(y[1])+10),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 

@@ -29,17 +29,15 @@ fps = FPS().start()
 
 
 last_time=time.time()
-bird=0
-y=0
 while 1 :
     image = vs.read()
     copy=image.copy()
-    bird=0#findBird(copy,bird)
-    x=processX(copy)
-    y=processY(copy,x,y)
-    draw_overlay(copy,x,y,bird);
-    copy2=imutils.resize(copy, width=400)
-    cv2.imshow("Image", copy2)
+    #bird=findBird(copy)
+    #x=processX(copy)
+    #y=processY(copy,x)
+    #draw_overlay(copy,x,y,bird);
+    cv2.imshow("Image", copy)
+    
     key = cv2.waitKey(1) & 0xFF
     
     if key == ord("q"):    # if the `q` key is pressed, break from the loop

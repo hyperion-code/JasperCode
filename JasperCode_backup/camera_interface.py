@@ -6,7 +6,7 @@ from picamera import PiCamera
 from threading import Thread
                 
 class PiVideoStream:
-    def __init__(self, resolution=(240, 320), framerate=32):
+    def __init__(self, resolution=(320, 240), framerate=32):
         # initialize the camera and stream
         self.camera = PiCamera()
         self.camera.rotation = 270
