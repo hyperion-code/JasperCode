@@ -12,7 +12,7 @@ import webcolors
 def processX(image):
     #Find the X Coordinates of the pipe walls
     minX=77
-    minY=20
+    minY=35
     maxX=minX+100
     maxY=minY+1
     resizedX=image[minY:maxY, minX:maxX];
@@ -25,7 +25,7 @@ def processX(image):
             R=70
             G=112
             B=120
-            T=40
+            T=50
             if(r>R-T and r<R+T):
                 if( b>B-T and b<B+T):
                     if(g>G-T and g<G+T):
@@ -35,26 +35,30 @@ def processX(image):
 def processY(image,x,last):
     #Find the X Coordinates of the pipe walls
     minX=x+15
-    minY=25
+    minY=35
     maxX=minX+1
-    maxY=250
+    maxY=260
     resizedX=image[minY:maxY, minX:maxX];
-    for layer in (resizedX):
-        for i,pixel in enumerate(layer):
-            print(pixel)
+    if(x<90):
+        return last
+    for i,layer in enumerate(resizedX):
+        for pixel in (layer):
+            #print(pixel)
             b=pixel[0]
             g=pixel[1]
             r=pixel[2]
-            print(closest_colour((r,g,b)))
-            B=170
-            G=177
-            R=70
+            #print(closest_colour((r,g,b)))
+            B=185
+            G=192
+            R=75
             T=15
             if(r>R-T and r<R+T):
                 if( b>B-T and b<B+T):
                     if(g>G-T and g<G+T):
-                        print(i)
-                        return i+minX+8
+                        #print(i)
+                        if(np.abs(last-(i+minY))>10):
+                            print((b,g,r))
+                        return int(((i+minY)*7/8+last/8))
     return last
 
 
